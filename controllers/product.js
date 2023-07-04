@@ -78,7 +78,7 @@ export const deleteProduct = async (req, res) => {
             return res.status(404).json({message: 'Продукт не найден'})
         }
         // console.log(product[0].authorId.toString(), userId)
-        if (product.authorId.toString() != userId) {
+        if (product.authorId.toString() !== userId.toString()) {
             return res.status(404).json({message: "Нет доступа"})
         }
         await ProductModel.deleteOne({
