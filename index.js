@@ -26,6 +26,7 @@ import {
 } from './controllers/cart.js'
 import {addCategory, deleteCategory, updateCategory, deleteUser} from "./controllers/Admin.js";
 import {getCategory, getCategoryById} from "./controllers/category.js";
+import {addOrder, deleteOrder, getOrderById, getOrderByUser} from "./controllers/Order.js";
 
 mongoose.connect('mongodb+srv://islam:islam@cluster0.fmfhiig.mongodb.net/?retryWrites=true&w=majority')
     .then(() => console.log('DB ok'))
@@ -68,6 +69,14 @@ app.patch('/api/v1/category/:id', checkAdmin, updateCategory)
 
 //User
 app.delete('/api/v1/user', checkAdmin, deleteUser)
+
+
+//Order
+app.get('/api/v1/order', checkAuth, getOrderByUser)
+app.get('/api/v1/order/:id', checkAuth, getOrderById)
+app.post('/api/v1/order', checkAuth, addOrder)
+app.delete('/api/v1/order/:id', checkAuth, deleteOrder)
+
 
 app.listen(PORT, (error) => {
     if (error) {
