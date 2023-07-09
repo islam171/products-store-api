@@ -63,7 +63,7 @@ export const getOrderById = async (req, res) => {
     try{
         const userId = req.userId
         const orderId = req.params.id
-        const order = await OrderModel.find({_id: orderId, userId: userId}).exec()
+        const order = await OrderModel.findOne({_id: orderId, userId: userId}).exec()
         if(!order){
             res.status(404).json({message: 'Не удалось найти заказ'})
         }
